@@ -14,7 +14,7 @@ modelo_path = 'EXPOT.pkl'
 
 csv_files = sorted(glob(os.path.join(carpeta_csv, '*.csv')))
 
-# === Detectar todas las clases ===
+#Detectar todas las clases
 todas_las_etiquetas = []
 for archivo in csv_files:
     try:
@@ -26,7 +26,7 @@ for archivo in csv_files:
         print(f"Error leyendo etiquetas en {archivo}: {e}")
 todas_las_etiquetas = list(set(todas_las_etiquetas))  # sin duplicados
 
-# === Cargar o crear modelo ===
+#Cargar o crear modelo
 if os.path.exists(modelo_path):
     print("Cargando modelo existente...")
     model, le = joblib.load(modelo_path)
@@ -44,14 +44,14 @@ else:
     clases_posibles = np.arange(len(le.classes_))
     print(f"Clases detectadas para entrenamiento: {list(le.classes_)}")
 
-# === Diccionario para acumular resultados ===
+#Diccionario para acumular resultados
 metrics_acumuladas = defaultdict(lambda: {'precision': [], 'recall': [], 'f1-score': [], 'support': 0})
 
-# === Datos para resumen global ===
+#Datos para resumen global
 y_true_global = []
 y_pred_global = []
 
-# === Entrenamiento incremental ===
+#Entrenamiento incremental
 for idx, archivo in enumerate(csv_files, start=1):
     print(f"\n [{idx}/{len(csv_files)}] Procesando: {os.path.basename(archivo)}")
 
@@ -66,7 +66,7 @@ for idx, archivo in enumerate(csv_files, start=1):
             print(f"El archivo {archivo} no tiene columna 'Label'. Saltando...")
             continue
 
-        # Unificar etiquetas con caracteres raros si existen
+        #Unificar etiquetas con caracteres raros si existen
         mapa_labels = {
             'Web Attack � Brute Force': 'Web Attack Brute Force',
             'Web Attack � Sql Injection': 'Web Attack Sql Injection',
@@ -77,7 +77,7 @@ for idx, archivo in enumerate(csv_files, start=1):
         X = df.drop('Label', axis=1)
         y = df['Label']
 
-        # Asegurar que solo entrenamos con etiquetas conocidas
+        #Asegurar que solo entrenamos con etiquetas conocidas
         y = y[y.isin(le.classes_)]
         y_encoded = le.transform(y)
         X = X.iloc[:len(y_encoded)]
@@ -88,14 +88,14 @@ for idx, archivo in enumerate(csv_files, start=1):
 
         y_pred = model.predict(X_test)
 
-        # Acumular resultados globales para reporte al final
+        #Acumular resultados globales para reporte al final
         y_true_global.extend(y_test)
         y_pred_global.extend(y_pred)
 
     except Exception as e:
         print(f"Error procesando {archivo}: {e}")
 
-# === Reporte global al final ===
+#Reporte global al final
 print("\n=== Reporte final global para todos los datos combinados ===")
 print(classification_report(y_true_global, y_pred_global, target_names=le.classes_, zero_division=0))
 
