@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  capture:
+    build: ./capture
+    network_mode: "host"
+    volumes:
+      - ./capture:/app
+    command: python capture.py
+
+  flowgen:
+    build: ./flowgen
+    volumes:
+      - ./flowgen:/app
+    command: java -jar cicflowmeter.jar
+
+  model:
+    build: ./model
+    volumes:
+      - ./model:/app
+    command: python predictor.py
+
+  honeypot:
+    build: ./honeypot
+    volumes:
+      - ./honeypot:/app
+    command: python honeypot.py
+
+  gui:
+    build: ./gui
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./gui:/app
+    command: python app.py
