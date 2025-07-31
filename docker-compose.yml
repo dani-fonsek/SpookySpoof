@@ -3,33 +3,49 @@ version: "3.8"
 services:
   capture:
     build: ./capture
-    network_mode: "host"
     volumes:
       - ./capture:/app
     command: python capture.py
+    networks:
+      - spooky-net
 
   flowgen:
     build: ./flowgen
     volumes:
-      - ./flowgen:/app
-    command: java -jar cicflowmeter.jar
+      - ./capture/pcaps:/input
+      - ./flowgen/flows:/output
+    command: java -jar cicflowmeter.jar -i /input -o /output
+    networks:
+      - spooky-net
 
   model:
     build: ./model
     volumes:
       - ./model:/app
-    command: python predictor.py
+    command: uvicorn predictor_api:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    networks:
+      - spooky-net
 
   honeypot:
     build: ./honeypot
     volumes:
       - ./honeypot:/app
     command: python honeypot.py
+    networks:
+      - spooky-net
 
   gui:
     build: ./gui
-    ports:
-      - "5000:5000"
     volumes:
       - ./gui:/app
     command: python app.py
+    ports:
+      - "5000:5000"
+    networks:
+      - spooky-net
+
+networks:
+  spooky-net:
+    driver: bridge
