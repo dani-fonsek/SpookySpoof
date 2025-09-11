@@ -9,7 +9,7 @@ import joblib
 from glob import glob
 from collections import defaultdict
 
-carpeta_csv = '/home/user/Desktop/SpookySpoof/datasets'
+carpeta_csv = '/home/user/Desktop/SpookySpoof/model/datasets'
 modelo_path = 'EXPOT.pkl'
 csv_files = sorted(glob(os.path.join(carpeta_csv, '*.csv')))
 
