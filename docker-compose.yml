@@ -15,16 +15,20 @@ services:
   flowgen:
     build: ./flowgen
     volumes:
-      - ./capture/pcaps:/input   # Lee los PCAPs desde la carpeta compartida
-      - ./flowgen/flows:/output  # Guarda los CSV de flujos aquí
-    command: java -jar cicflowmeter.jar -i /input -o /output
+      - ./capture/pcaps:/app/pcaps   # Carpeta compartida de PCAPs
+      - ./flowgen/flows:/app/output  # Carpeta donde se guardan los CSV
+    depends_on:
+      - capture
     networks:
       - spooky-net
+    # Ejemplo de ejecución (puedes cambiar el archivo pcap):
+    command: ["python3", "flowgen.py", "/app/pcaps/example.pcap", "/app/output"]
 
   model:
     build: ./model
     volumes:
       - ./model:/app
+      - ./flowgen/flows:/app/flows   # Lee los CSV generados por flowgen
     command: uvicorn predictor_api:app --host 0.0.0.0 --port 8000
     ports:
       - "8000:8000"
