@@ -1,0 +1,102 @@
+<!DOCTYPE html> <html lang="en" data-spooky>
+  
+<head> <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Spooky Spoof Style | Sidebar Dashboard</title> 
+  <link rel="stylesheet" href="css/stylesMain.css" />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap" rel="stylesheet">
+</head>
+  
+  <body class="spooky-scope"> 
+  <div class="spooky-wrap" id="spooky-sidebar-app" data-spooky> 
+     <header class="topbar"> 
+      <a class="spooky-brand" href="index.html"> 
+        <img src="images/logo.png" alt="Logo Spooky Spoof" class="logo-img">
+      </a> 
+      <button class="spooky-toggle" id="spookyCollapseBtn" aria-label="Collapse sidebar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </button>
+  </header>
+
+
+  <div class="spooky-main">
+   <!--------------------SIDEBAR------------------------------------------>
+    <aside class="spooky-sidebar" id="spookySidebar" aria-label="Sidebar Navigation">
+      <nav class="spooky-nav" role="navigation">
+        <button class="spooky-item" data-section="home" aria-current="page">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2v-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          <span class="label">Home</span>
+        </button>
+        <button class="spooky-item" data-section="monitoring">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16v12H4zM2 20h20" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          <span class="label">Monitoring</span>
+        </button>
+        <button class="spooky-item" data-section="tools">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 7l-7 7M3 21l7-7M14 3l7 7M3 10l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="label">Tools</span>
+        </button>
+        <button class="spooky-item" data-section="faq">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 18h.01M8 9a4 4 0 1 1 6.7 2.7c-.7.7-1.7 1.3-1.7 2.3v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="label">FAQ</span>
+        </button>
+      </nav>
+    </aside>
+    
+    <!-- Content -->
+    <main class="spooky-content" id="spookyContent" tabindex="-1">
+      <div class="spooky-blob" aria-hidden="true"></div>
+  
+      <!-- Home -->
+      <section data-view="home" class="active">
+        <div class="spooky-hero">
+          <div class="text1">
+            <h1>Escaneo de red </h1>
+            <p>En esta seccion puedes realizar un escaneo de tráfico en la red.</p>
+          </div>
+          <div class="box1">
+            <h2 style="margin:0 0 60px;">Click acá para comenzar 
+              <br> </br>
+            <button class="btn-hero" type="button">Comenzar Testeo</button>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Monitoring -->
+      <section data-view="monitoring" style="display:none;">
+        <h2 style="margin:0 0 12px;">Monitoring</h2>
+        <p style="color:var(--muted); margin:0 0 16px;">Live and historical insights will appear here.</p>
+        <div class="spooky-card">Traffic: No data yet.</div>
+        <div class="spooky-card">Alerts: All clear.</div>
+        <div class="spooky-card">Health: Good.</div>
+      </section>
+  
+      <!-- Tools -->
+      <section data-view="tools">
+        <h2 style="margin:0 0 12px;">Tools</h2>
+        <div class="spooky-card"><strong>MAC Spoof Detector</strong><br/>Learn with simulations and tutorials.</div>
+        <div class="spooky-card"><strong>Network Scanner</strong><br/>Explore devices on your local network (coming soon).</div>
+      </section>
+  
+      <!-- FAQ -->
+      <section data-view="faq">
+        <h2 style="margin:0 0 12px;">Frequently Asked Questions</h2>
+        <div class="spooky-faq" id="spookyFaq">
+          <div class="item">
+            <button class="q" type="button">What is this dashboard?</button>
+            <p class="a">An educational interface inspired by Spooky Spoof for exploring network security concepts.</p>
+          </div>
+          <div class="item">
+            <button class="q" type="button">Do I need prior experience?</button>
+            <p class="a">No. It’s designed for beginners to get started quickly.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  </div> 
+  <script src="main.js"></script>
+
+</body> 
+</html>

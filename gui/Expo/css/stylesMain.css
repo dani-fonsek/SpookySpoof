@@ -1,0 +1,301 @@
+[data-spooky] { 
+  overflow: hidden;
+  --bg: #f0f0ff; 
+  --text: #121826; 
+  --muted: #5b6270; 
+  --white: #ffffff; 
+  --border: #e4e6ef; 
+  --brand-1: #004080;
+  --brand-2: #1a5ea8; 
+  --accent-1: #003060;
+  --accent-2: #863171; 
+  --deep: #002648; 
+  --shadow: 0 12px 30px rgba(18, 24, 38, 0.12); 
+  --radius: 16px; 
+  --radius-sm: 12px; 
+  --transition: 200ms cubic-bezier(.2,.6,.2,1); 
+}
+
+[data-spooky] * { 
+  box-sizing: border-box; 
+} 
+
+@font-face {
+  font-family: 'League Spartan';
+  src: url('font/league-spartan.bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+[data-spooky] {
+  font-family: 'League Spartan', sans-serif;
+}
+
+
+[data-spooky] 
+html { 
+  margin: 0; 
+} 
+
+[data-view] {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 300ms ease, transform 300ms ease;
+  position: relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+[data-view].active {
+  opacity: 1;
+  transform: translateY(0);
+  position: relative;
+  pointer-events: auto;
+}
+
+.spooky-item[aria-current="page"] .label {
+  color: #fff !important;
+}
+
+.logo-img {
+  height: 60px;
+}
+
+.spooky-scope {
+  font-family: 'League Spartan', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.spooky-scope a { 
+  color: inherit; 
+  text-decoration: none; 
+} 
+
+.spooky-scope img { 
+  max-width: 100%; 
+  display: block; 
+}
+
+.spooky-wrap {  
+  display: flex; 
+  flex-direction: column;
+  height: 100vh; 
+}
+
+.topbar { 
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 64px; display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  position: sticky; top: 0; z-index: 20; 
+  flex-shrink: 0;
+} 
+  
+.spooky-brand { 
+  display: flex; 
+  align-items: center;
+  gap: 10px; 
+  font-weight: 700; 
+  letter-spacing: .2px; 
+} 
+
+.spooky-logo { 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 10px; 
+  background: linear-gradient(45deg, var(--brand-1), var(--brand-2)); 
+  box-shadow: var(--shadow); 
+} 
+
+.spooky-toggle { 
+  appearance: none; 
+  border: none; 
+  background: transparent; 
+  cursor: pointer; 
+  padding: 8px; 
+  border-radius: 10px; 
+} 
+
+.spooky-toggle:focus-visible { 
+  outline: 2px solid var(--brand-2); 
+  outline-offset: 2px; 
+}
+
+.spooky-main {
+ flex: 1; 
+ display: flex;
+ min-height: 0; 
+ overflow: hidden;
+} 
+
+.spooky-sidebar { 
+  width: 260px; 
+  height: 100%;
+  background: var(--white); 
+  border-right: 1px solid var(--border); 
+  transition: width var(--transition); 
+  overflow: hidden; 
+} 
+
+.spooky-sidebar.collapsed { 
+  width: 64px; 
+} 
+  
+.spooky-nav { 
+  padding: 12px; display: grid; 
+  gap: 6px; 
+} 
+
+.spooky-group-label { 
+  font-size: 12px; 
+  color: var(--muted); 
+  text-transform: uppercase; 
+  padding: 8px 10px; 
+  letter-spacing: .06em; 
+} 
+
+.spooky-item { 
+  font-size: 15px;
+  display: flex; 
+  align-items: center; 
+  gap: 10px; width: 100%; 
+  padding: 10px 12px; 
+  border-radius: 10px; 
+  color: var(--text); 
+  background: transparent; 
+  border: 0; cursor: pointer; 
+  text-align: left; transition: background var(--transition), color var(--transition), transform var(--transition); 
+} 
+
+.spooky-item:hover { 
+  background: #f4f6ff; 
+} 
+
+.spooky-item[aria-current="page"] { 
+  background: linear-gradient(145deg, #003060, #863171);  
+  color: #fff; 
+} 
+  
+.spooky-item .icon { 
+    width: 18px; height: 18px; flex: 0 0 18px; 
+} 
+
+.spooky-item[aria-current="page"] .icon {
+  stroke: #fff !important;
+}
+
+  
+.spooky-item .label { 
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; } 
+
+.spooky-sidebar.collapsed .label { 
+  display: none; 
+}
+
+.spooky-content { 
+  flex: 1; min-width: 0; 
+  padding: 24px; 
+  position: relative; 
+}
+
+/* ========== Hero / Card styles ========== */ 
+.spooky-hero { 
+  display: grid; 
+  gap: 24px; 
+  grid-template-columns: 1.1fr 0.9fr; 
+  align-items: center; 
+  padding: clamp(16px, 3vw, 24px); 
+  position: relative;
+} 
+  
+.spooky-hero h1 { 
+  font-weight: 900; 
+  line-height: 1.15; 
+  font-size: 60px; 
+  margin: 0; } 
+
+.spooky-hero h2 { 
+  margin: 12px 0 0; 
+  color: var(--muted); 
+  font-size: 25px; 
+}
+
+.spooky-hero p { 
+  margin: 12px 0 0; 
+  color: var(--muted); 
+  font-size: 35px; 
+} 
+
+ .text1{
+  max-width: 400px;
+  margin-top: 75px;
+  margin-left: 50px;
+}
+
+.box1 { 
+  background: white; 
+  border-radius: var(--radius); 
+  box-shadow: var(--shadow); 
+  padding-top: 90px;
+  padding-bottom: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
+  text-align: center; 
+  position: relative;
+  top: 100px;
+  right: 100px;
+} 
+
+.btn-hero { appearance: none; border: none; cursor: pointer; padding: 12px 20px; border-radius: 17px; font-weight: 800; color: #fff; font-size: 18px; background: linear-gradient(45deg, var(--brand-1), var(--brand-2)); box-shadow: 0 6px 18px rgba(0,0,0,.15); transition: transform 260ms ease, filter 260ms ease; } .btn-hero:hover { transform: scale(1.06); filter: brightness(1.05); } .btn-hero:focus-visible { outline: 3px solid #bcd3ff; outline-offset: 3px; }
+
+.spooky-card { background: var(--white); border-radius: var(--radius-sm); padding: 16px 18px; box-shadow: var(--shadow); } .spooky-card + .spooky-card { margin-top: 14px; }
+
+/* FAQ style section (accent panel) */ .spooky-faq { background: var(--deep); color: #fff; border-radius: var(--radius); padding: 18px; } .spooky-faq .q { margin: 0; border-radius: 12px; padding: 12px 14px; font-weight: 700; cursor: pointer; border: 0; background: linear-gradient(145deg, var(--accent-1), var(--accent-2)); color: #fff; width: 100%; text-align: left; transition: transform var(--transition), filter var(--transition); } .spooky-faq .q:hover { transform: scale(1.02); filter: brightness(1.05); } .spooky-faq .a { margin: 0; max-height: 0; overflow: hidden; transition: max-height 300ms ease, opacity 300ms ease; opacity: 0; color: #e8e8ff; padding: 0 2px; } .spooky-faq .item.open .a { max-height: 220px; opacity: 1; margin-top: 8px; }
+
+/* Decorative floating blob (signature moment) */ .spooky-blob { position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(120px 120px at 40% 40%, #ffffffa8 0%, #ffffff10 60%, transparent 70%), linear-gradient(45deg, var(--accent-1), var(--accent-2)); filter: blur(6px) saturate(1.1); opacity: .35; pointer-events: none; animation: floatY 5s ease-in-out infinite; } @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } } @media (prefers-reduced-motion: reduce) { .btn-hero, .spooky-faq .q, .spooky-blob { transition: none; animation: none; } }
+
+@media (max-width: 960px) { 
+  .spooky-hero { 
+    grid-template-columns: 1fr; 
+  } 
+} 
+
+@media (max-width: 720px) { 
+  .spooky-sidebar { 
+    position: fixed; 
+    inset: 64px auto 0 0; 
+    height: calc(100dvh - 64px); 
+    z-index: 30; 
+    box-shadow: var(--shadow); 
+    translate: -100% 0; 
+    transition: translate var(--transition), width var(--transition); 
+    width: 260px; } 
+    
+  .spooky-sidebar.open { 
+    translate: 0 0; } 
+  
+ .spooky-sidebar.collapsed { 
+  width: 260px; }  
+  
+  .spooky-backdrop { 
+    position: fixed; 
+    inset: 64px 0 0 0; 
+    background: rgba(0,0,0,.2); 
+    backdrop-filter: blur(1px); 
+    opacity: 0; pointer-events: none; 
+    transition: opacity var(--transition); 
+    z-index: 25; } 
+    
+  .spooky-backdrop.show { 
+    opacity: 1; 
+    pointer-events: auto; 
+  } 
+}

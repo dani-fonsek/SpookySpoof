@@ -1,0 +1,131 @@
+%!Adobe-FontList 1.22
+%Locale:0x80a
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Now-Black
+FamilyName:Now
+StyleName:Black
+FullName:Now Black
+MenuName:Now Black
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\TICS 205-10\Desktop\Mora\Expo\Font\Now-Black.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:38144
+FileModTime:1449288116
+WeightClass:900
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Now Black
+NameArray:0,Win,1,Now Black
+NameArray:0,Win,16,Now
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Now-Bold
+FamilyName:Now
+StyleName:Bold
+FullName:Now Bold
+MenuName:Now
+StyleBits:2
+WritingScript:Roman
+OutlineFileName:C:\Users\TICS 205-10\Desktop\Mora\Expo\Font\Now-Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:37776
+FileModTime:1449288116
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Now Bold
+NameArray:0,Win,1,Now
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Now-Light
+FamilyName:Now
+StyleName:Light
+FullName:Now Light
+MenuName:Now Light
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\TICS 205-10\Desktop\Mora\Expo\Font\Now-Light.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:35980
+FileModTime:1449288116
+WeightClass:300
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Now Light
+NameArray:0,Win,1,Now Light
+NameArray:0,Win,16,Now
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Now-Medium
+FamilyName:Now
+StyleName:Medium
+FullName:Now Medium
+MenuName:Now Medium
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\TICS 205-10\Desktop\Mora\Expo\Font\Now-Medium.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:36204
+FileModTime:1449288116
+WeightClass:500
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Now Medium
+NameArray:0,Win,1,Now Medium
+NameArray:0,Win,16,Now
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Now-Regular
+FamilyName:Now
+StyleName:Regular
+FullName:Now
+MenuName:Now
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\TICS 205-10\Desktop\Mora\Expo\Font\Now-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:35920
+FileModTime:1449288116
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Now
+NameArray:0,Win,1,Now
+%EndFont
+

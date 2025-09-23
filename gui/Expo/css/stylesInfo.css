@@ -1,0 +1,140 @@
+    /* general */
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+    /* FUENTES */
+
+    body {
+    font-family: 'Now', sans-serif;
+    font-weight: 500; /* Medium por defecto */
+    background-color:#f0f0ff;
+    }
+
+    .topbar {
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-img {
+    height: 60px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    }
+
+    main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    }
+
+    .info-section {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 20px 40px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 1;
+    }
+
+    .info-section:hover {
+    background: #f9f9ff;
+    }
+
+    .toggle-titulo {
+    font-size: 2rem;
+    color: #1A335E;
+    margin-bottom: 10px;
+    transition: all 0.4s ease;
+    }
+
+
+    .contenido {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: max-height 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .info-section.active .contenido {
+    max-height: 500px; 
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .info-section.active .toggle-titulo {
+        background: linear-gradient(
+            90deg, 
+            #CA4F64, 
+            #B2509D, 
+            #462C80, 
+            #1A335E,
+            #462C80, 
+            #B2509D,
+            #CA4F64 
+        );
+    background-size: 300% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShiftHorizontal 2s linear infinite;
+    }
+
+    @keyframes gradientShiftHorizontal {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+    }
+
+    .fantasmas {
+        position: relative;
+        height: 100px;
+        background: #f0f0ff;
+        z-index: 0; /* detrás de todo */
+        pointer-events: none;
+    }
+
+    .img2 {
+        position: absolute;
+        transform: translateY(-50%);
+        right: -300px;
+        height: 250px;
+        animation-delay: 0s;
+        animation: float 2s ease-in-out infinite;
+        
+      }
+      
+    .img3 {
+        right: 900px;
+        top: 200px;
+        position: absolute;
+        transform: translateY(-50%);
+        height: 250px;
+        animation-delay: 1s;
+        animation: float 2s ease-in-out infinite;
+      }
+
+    .img2, .img3 {
+        position: absolute;
+        z-index: -1; /* los manda detrás del contenido */
+      }
+
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      

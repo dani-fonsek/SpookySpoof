@@ -1,0 +1,273 @@
+/* general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* FUENTES */
+@font-face {
+  font-family: 'League Spartan';
+  src: url('font/league-spartan.bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'League-Spartan', sans-serif;
+  font-weight: 700; /* Medium por defecto */
+  background-color:#f0f0ff;
+}
+
+h1, h2, h3, p, button {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 700;
+}
+
+
+.topbar {
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+  height: 60px;
+}
+/*--------------------------------------------------------*/
+/* hero */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 8%;
+  background-color: #f0f0ff;
+  min-height: 80vh;
+  margin-bottom: 0;
+}
+
+.hero-left h1 {
+  font-size: 3.8rem;
+  line-height: 1.2;
+}
+
+.call-to-action {
+  font-size: 2rem;
+  max-width: 550px;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-bottom: 0;
+}
+/*--------------------------------------------------------*/
+/* boton de comenzar */
+.btn {
+  font-weight: 700;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+  border-radius: 17px;
+  background: linear-gradient(45deg, #004080, #1a5ea8);
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(45deg, #1a5ea8, #004080);
+}
+
+.fantasmas {
+  position: relative;
+  height: 100px;
+  background: #f0f0ff;
+}
+
+.img2 {
+  position: absolute;
+  left: -60;
+  top: -60%;
+  transform: translateY(-50%);
+  height: 150px;
+  animation-delay: 0s;
+  animation: float 2s ease-in-out infinite;
+}
+
+.img3 {
+  position: absolute;
+  right: 50px;
+  top: -235px;
+  transform: translateY(-50%);
+  height: 150px;
+  animation-delay: 2s;
+  animation: float 2s ease-in-out infinite;
+
+}
+
+.info {
+  position: fixed;
+  bottom: 500px;
+  right: -10px;
+  z-index: 1000;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.info:hover {
+  transform: scale(1.05);
+}
+
+.info img {
+  height: 60px;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  right: 50%;
+  background: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.info:hover .tooltip {
+  opacity: 1;
+  transform: translateY(-12px);
+}
+
+
+
+/*--------------------------------------------------------*/
+/* Sección FAQ */
+.faq-section {
+  padding: 5rem 10%;
+  background-color: #003060;
+  text-align: center;
+  color: white;
+}
+
+.faq-item {
+  margin-bottom: 2rem;
+  text-align: left;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(145deg, #003060, #863171, #003060);  
+  border: none;
+  border-radius: 15px;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.15);  
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.faq-question:hover {
+  background: linear-gradient(145deg, #5e2650, #b9459c, #5e2650 );
+  transform: scale(1.03);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  opacity: 0;
+  padding: 0 1.5rem;
+  background-color: #002648;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.faq-item.open .faq-answer {
+
+    max-height: 500px; 
+    opacity: 1;
+    padding: 1rem 1.5rem;
+  }
+  
+
+.faq-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  background-color: #003060; 
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.faq-buttons button {
+  font-weight: 300; /* Medium */
+  overflow-x: hidden;
+  display: block;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  color: #ffffff;
+  background: linear-gradient(45deg, #b3509e, #863171); 
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);  
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.faq-buttons button:hover {
+  background: linear-gradient(45deg, #863171, #b3509e); 
+  transform: scale(1.08);
+}
+
+.ghost-bottom {
+  margin-top: 3rem;
+  width: 250px;
+  height: auto;
+  animation: float 2s ease-in-out infinite;
+}
+
+/*--------------------------------------------------------*/
+/* animaciones */
+
+.fade-in {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
