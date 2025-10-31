@@ -15,20 +15,19 @@ services:
   flowgen:
     build: ./flowgen
     volumes:
-      - ./capture/pcaps:/app/pcaps   # Carpeta compartida de PCAPs
-      - ./flowgen/flows:/app/output  # Carpeta donde se guardan los CSV
+      - ./capture/pcaps:/app/pcaps
+      - ./flowgen/flows:/app/output
     depends_on:
       - capture
     networks:
       - spooky-net
-    # Ejemplo de ejecución (puedes cambiar el archivo pcap):
     command: ["python3", "flowgen.py", "/app/pcaps/example.pcap", "/app/output"]
 
   model:
     build: ./model
     volumes:
       - ./model:/app
-      - ./flowgen/flows:/app/flows   # Lee los CSV generados por flowgen
+      - ./flowgen/flows:/app/flows
     command: uvicorn predictor_api:app --host 0.0.0.0 --port 8000
     ports:
       - "8000:8000"
@@ -53,6 +52,28 @@ services:
     ports:
       - "5000:5000"
 
+  spookyserver:
+    build: ./server
+    container_name: spookyserver
+    environment:
+      - HP_USER=spooky
+      - HP_PASS=5P00F
+    networks:
+      spooky-macvlan:
+        ipv4_address: 192.168.10.13
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+
 networks:
   spooky-net:
     driver: bridge
+
+  spooky-macvlan:
+    driver: macvlan
+    driver_opts:
+      parent: intspooky
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+          gateway: 192.168.10.11
