@@ -17,4 +17,4 @@ COPY flowgen.py /app/flowgen.py
 RUN apt-get update && apt-get install -y python3 python3-pip && rm -rf /var/lib/apt/lists/*
 RUN pip3 install pandas
 
-ENTRYPOINT ["python3", "flowgen.py"]
+ENTRYPOINT ["python3", "flowgenn.py"]
