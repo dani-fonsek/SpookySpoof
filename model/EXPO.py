@@ -7,37 +7,16 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import classification_report
 import joblib
 from glob import glob
-from collections import defaultdict
 
 carpeta_csv = '/home/user/Desktop/SpookySpoof/model/datasets'
 modelo_path = 'EXPOT.pkl'
 csv_files = sorted(glob(os.path.join(carpeta_csv, '*.csv')))
 
-#Detectar todas las clases
-todas_las_etiquetas = []
-for archivo in csv_files:
-    try:
-        df_temp = pd.read_csv(archivo, low_memory=False)
-        df_temp.columns = df_temp.columns.str.strip()
-        if 'Label' in df_temp.columns:
-            todas_las_etiquetas.extend(df_temp['Label'].dropna().unique())
-    except Exception as e:
-        print(f"Error leyendo etiquetas en {archivo}: {e}")
-todas_las_etiquetas = list(set(todas_las_etiquetas))  #sin duplicados
-
-#Cargar o crear modelo
-if os.path.exists(modelo_path):
-    print("Cargando modelo existente...")
-    model, le = joblib.load(modelo_path)
-    clases_posibles = np.arange(len(le.classes_))
-    print(f"Clases conocidas: {list(le.classes_)}")
-else:
-    print("Entrenando modelo nuevo desde cero...")
-    model = SGDClassifier(loss='log_loss', max_iter=1000, tol=1e-3, random_state=42)
-    le = LabelEncoder()
-    le.fit(todas_las_etiquetas)
-    clases_posibles = np.arange(len(le.classes_))
-    print(f"Clases detectadas para entrenamiento: {list(le.classes_)}")
+# Clases que queremos mantener individuales
+clases_reales = [
+    'BENIGN', 'Bot', 'DDoS', 'DoS GoldenEye', 'DoS Hulk',
+    'DoS Slowhttptest', 'DoS slowloris'
+]
 
 #Mapa de etiquetas mal codificadas
 mapa_labels = {
@@ -59,6 +38,21 @@ alias_columnas = {
     'Bwd Pkts/s': 'Bwd Packets/s'
 }
 
+# Cargar o crear modelo
+if os.path.exists(modelo_path):
+    print("Cargando modelo existente...")
+    model, le = joblib.load(modelo_path)
+    clases_posibles = np.arange(len(le.classes_))
+    print(f"Clases conocidas: {list(le.classes_)}")
+else:
+    print("Entrenando modelo nuevo desde cero...")
+    model = SGDClassifier(loss='log_loss', max_iter=1000, tol=1e-3, random_state=42)
+    le = LabelEncoder()
+    # Agregamos 'Malicious' para todos los ataques no deseados
+    le.fit(clases_reales + ['Malicious'])
+    clases_posibles = np.arange(len(le.classes_))
+    print(f"Clases detectadas para entrenamiento: {list(le.classes_)}")
+
 #Variables para resumen global
 y_true_global = []
 y_pred_global = []
@@ -79,19 +73,24 @@ for idx, archivo in enumerate(csv_files, start=1):
         if 'Label' not in df.columns:
             print(f"El archivo {archivo} no tiene columna 'Label'. Saltando...")
             continue
-        
+
+        # Corregir etiquetas mal codificadas
         df['Label'] = df['Label'].replace(mapa_labels)
         df['Label'] = df['Label'].replace({'Benign': 'BENIGN'})
+
+        # Mantener solo clases reales; el resto como 'Malicious'
+        df['Label'] = df['Label'].apply(lambda x: x if x in clases_reales else 'Malicious')
+
         y = df['Label']
         X = df.drop('Label', axis=1)
 
-        #Filtrar solo etiquetas conocidas
+        # Filtrar solo etiquetas conocidas por el LabelEncoder
         validos = y.isin(le.classes_)
         y = y[validos]
         X = X.loc[validos]
         y_encoded = le.transform(y)
 
-        #Filtrar columnas numéricas
+        # Filtrar columnas numéricas
         X = X.select_dtypes(include=[np.number])
         X = X.iloc[:len(y_encoded)]
 
@@ -106,7 +105,7 @@ for idx, archivo in enumerate(csv_files, start=1):
             #Reordenar columnas
             X = X[columnas_base]
 
-        #Entrenamiento
+        #Entrenamiento incremental
         X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.2, random_state=42)
         model.partial_fit(X_train, y_train, classes=clases_posibles)
 
@@ -120,8 +119,6 @@ for idx, archivo in enumerate(csv_files, start=1):
 #Reporte global corregido
 print("\n=== Reporte final global para todos los datos combinados ===")
 if y_true_global and y_pred_global:
-    import numpy as np
-
     #Determinar las clases presentes realmente en los datos
     clases_presentes = sorted(np.unique(np.concatenate([y_true_global, y_pred_global])))
 
@@ -134,7 +131,6 @@ if y_true_global and y_pred_global:
     ))
 else:
     print("No se generó un reporte global porque no se logró entrenar ningún archivo correctamente.")
-
 
 joblib.dump((model, le), modelo_path)
 print("\nEntrenamiento incremental completo. Modelo guardado como EXPOT.pkl")
