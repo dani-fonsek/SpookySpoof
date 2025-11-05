@@ -34,7 +34,7 @@ def normalize_csv_dynamic(input_file, output_file, base_csv=BASE_CSV):
     # Guardar CSV limpio
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     df.to_csv(output_file, index=False)
-    print(f"✅ CSV normalizado guardado en: {output_file}")
+    print(f"CSV normalizado guardado en: {output_file}")
 
 def process_all_flows(csv_dir=CSV_DIR, output_dir=OUTPUT_DIR):
     csv_files = [f for f in os.listdir(csv_dir) if f.endswith(".csv")]
