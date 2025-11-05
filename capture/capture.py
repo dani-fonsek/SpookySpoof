@@ -13,7 +13,7 @@ pcap_file = os.path.join(pcap_dir, f"capture_{datetime.now().strftime('%Y%m%d_%H
 interface = "wlp2s0"
 print(f"[INFO] Capturando en interfaz: {interface}")
 
-#Captura 100 paquetes como prueba
+#Captura paquetes como prueba
 packets = sniff(iface=interface, count=300)
 
 # uardar en archivo pcap
