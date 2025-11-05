@@ -12,7 +12,7 @@ carpeta_csv = '/home/user/Desktop/SpookySpoof/model/datasets'
 modelo_path = 'EXPOT.pkl'
 csv_files = sorted(glob(os.path.join(carpeta_csv, '*.csv')))
 
-# Clases que queremos mantener individuales
+#Clases que queremos mantener individuales
 clases_reales = [
     'BENIGN', 'Bot', 'DDoS', 'DoS GoldenEye', 'DoS Hulk',
     'DoS Slowhttptest', 'DoS slowloris'
@@ -38,7 +38,7 @@ alias_columnas = {
     'Bwd Pkts/s': 'Bwd Packets/s'
 }
 
-# Cargar o crear modelo
+#Cargar o crear modelo
 if os.path.exists(modelo_path):
     print("Cargando modelo existente...")
     model, le = joblib.load(modelo_path)
@@ -48,7 +48,7 @@ else:
     print("Entrenando modelo nuevo desde cero...")
     model = SGDClassifier(loss='log_loss', max_iter=1000, tol=1e-3, random_state=42)
     le = LabelEncoder()
-    # Agregamos 'Malicious' para todos los ataques no deseados
+    #Agregamos 'Malicious' para todos los ataques no deseados
     le.fit(clases_reales + ['Malicious'])
     clases_posibles = np.arange(len(le.classes_))
     print(f"Clases detectadas para entrenamiento: {list(le.classes_)}")
@@ -84,13 +84,13 @@ for idx, archivo in enumerate(csv_files, start=1):
         y = df['Label']
         X = df.drop('Label', axis=1)
 
-        # Filtrar solo etiquetas conocidas por el LabelEncoder
+        #Filtrar solo etiquetas conocidas por el LabelEncoder
         validos = y.isin(le.classes_)
         y = y[validos]
         X = X.loc[validos]
         y_encoded = le.transform(y)
 
-        # Filtrar columnas numéricas
+        #Filtrar columnas numéricas
         X = X.select_dtypes(include=[np.number])
         X = X.iloc[:len(y_encoded)]
 

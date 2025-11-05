@@ -1,0 +1,8 @@
+RESULTADO DEL ANÁLISIS DE TRÁFICO
+───────────────────────────────────────────────
+Dirección MAC:        00:1A:92:5F:3C:7B
+Dirección IP:         192.168.0.105
+Paquetes analizados:  300
+Hora del análisis:    2025-11-04 07:43:56
+Nivel de confianza:   90.6%
+───────────────────────────────────────────────
