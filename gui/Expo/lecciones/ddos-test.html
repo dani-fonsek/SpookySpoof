@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Spooky Trial DDoS</title>
+  <link rel="stylesheet" href="../css/stylesMain.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+</head>
+  <body>
+  <header class="topbar">
+    <a href="../index.html">
+      <img src="../images/logo.png" alt="Logo Spooky Spoof" class="logo-img">
+    </a>
+    <button id="spookyCollapseBtn" class="spooky-toggle" aria-label="Colapsar sidebar">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <main class="quiz-container">
+    <h1>Spooky Trial DDoS</h1>
+    <form id="ddosQuiz">
+      <div class="quiz-question">
+        <h3>¿Qué es un ataque DDoS?</h3>
+        <label><input type="radio" name="q1" value="A"> Una ataque en el que se saturan sistemas y servicios con una gran cantidad de tráfico malicioso desde múltiples dispositivos.</label>
+        <label><input type="radio" name="q1" value="B"> Un ataque dirigido exclusivamente a bases de datos.</label>
+        <label><input type="radio" name="q1" value="C"> Un tipo de ciberataque que usa un solo dispositivo para saturar un servidor.</label>
+      </div>
+
+      <div class="quiz-question">
+        <h3>¿Qué es una botnet?</h3>
+        <label><input type="radio" name="q2" value="A"> Un conjunto de servidores que realizan ataques DDoS.</label>
+        <label><input type="radio" name="q2" value="B"> Una red distribuida de dispositivos comprometidos que envían tráfico malicioso.</label>
+        <label><input type="radio" name="q2" value="C"> Un sistema de protección contra ataques DDoS.</label>
+      </div>
+
+      <div class="quiz-question">
+        <h3>¿Cuáles son algunos de los dispositivos que pueden formar parte de una botnet?</h3>
+        <label><input type="radio" name="q3" value="A"> Solo computadoras personales.</label>
+        <label><input type="radio" name="q3" value="B"> PCs, smartphones, cámaras IP, dispositivos IoT y enrutadores mal configurados.</label>
+        <label><input type="radio" name="q3" value="C"> Solo servidores web y bases de datos.</label>
+      </div>
+
+      <div class="quiz-question">
+        <h3>¿Cuál de los siguientes NO es un objetivo común de los ataques DDoS?</h3>
+        <label><input type="radio" name="q4" value="A"> Hacktivismo.</label>
+        <label><input type="radio" name="q4" value="B"> Guerra cibernética.</label>
+        <label><input type="radio" name="q4" value="C"> Mejorar la infraestructura de un sitio web.</label>
+      </div>
+
+      <div class="quiz-question">
+        <h3>¿Qué tipo de ataque DDoS se basa en enviar grandes cantidades de tráfico a la capa de aplicación de un sistema?</h3>
+        <label><input type="radio" name="q5" value="A"> Ataques por amplificación/reflexión de DNS.</label>
+        <label><input type="radio" name="q5" value="B"> Ataques volumétricos.</label>
+        <label><input type="radio" name="q5" value="C"> Ataques a la capa de aplicación.</label>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Enviar respuestas</button>
+      <div id="quiz-result"></div>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById('ddosQuiz').addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const answers = {
+        q1: 'A',
+        q2: 'B',
+        q3: 'B',
+        q4: 'C',
+        q5: 'C'
+      };
+  
+      let score = 0;
+      for (let q in answers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+  
+      const result = document.getElementById('quiz-result');
+      result.innerHTML = `<p>Obtuviste ${score} de 5 respuestas correctas.</p>`;
+  
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.textContent = '← Volver al homepage';
+      submitBtn.classList.add('back-home');
+      submitBtn.onclick = () => window.location.href = '../main.html';
+      submitBtn.type = 'button'; // evita que vuelva a enviar el formulario
+    });
+  </script>
+</body>
+</html>

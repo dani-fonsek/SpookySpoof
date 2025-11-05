@@ -1,0 +1,78 @@
+body {
+    background: #f0f0ff;
+    font-family: 'League Spartan', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .quiz-container {
+    max-width: 1300px;
+    margin: 4rem auto;
+    background: white;
+    padding: 3.5rem 12rem;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(18, 24, 38, 0.12);
+  }
+  
+  .quiz-container h1 {
+    font-size: 3.5rem;
+    color: #003060;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .quiz-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .quiz-question {
+    margin-bottom: 6rem;
+  }
+
+  .quiz-question h3 {
+    font-size: 2.5rem;
+    color: #863171;
+    margin-bottom: 1rem;
+  }
+  
+  .quiz-question label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
+    color: #5b6270;
+    cursor: pointer;
+    text-align: justify;
+  }
+  
+  .quiz-question input[type="radio"] {
+    margin-right: 8px;
+  }
+  
+  .submit-btn {
+    background: linear-gradient(145deg, #003060, #863171);
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    padding: 0.8rem 1.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    display: block;
+    margin: 2rem auto 1rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #1a5ea8, #004080);
+  }
+  
+  #quiz-result {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #003060;
+    margin-top: 1rem;
+  }

@@ -1,0 +1,144 @@
+body {
+  background: #f0f0ff;
+  font-family: 'League Spartan', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.lesson-tabs {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.12);
+  padding: 2rem;
+  max-width: 700px;
+  margin: 4rem auto;
+}
+
+.lesson-tabs h1 {
+  font-size: 2.5rem;
+  color: #003060;
+  margin-bottom: 2rem;
+}
+
+.lesson-panel {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.lesson-panel.active {
+  display: block;
+}
+
+.lesson-panel h3 {
+  font-size: 1.5rem;
+  color: #863171;
+  margin-bottom: 1rem;
+}
+
+.lesson-panel p {
+  font-size: 1.6rem;
+  color: #5b6270;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.lesson-panel ul {
+  text-align: justify;
+  padding-left: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.lesson-panel li {
+  margin-bottom: 0.8rem;
+  color: #5b6270;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.tab-indicators {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tab-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tab-dot.active {
+  background: #863171;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.lesson-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* ← clave para igualar altura */
+  margin-top: 2rem;
+  gap: 16px;
+}
+
+.back-link,
+.test-link {
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #003060, #863171);
+  color: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+
+.back-link,
+.test-link {
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #003060, #863171);
+  color: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  height: 48px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.back-link {
+  color: #fff;
+  background: linear-gradient(145deg, #003060, #863171);
+}
+
+.test-link {
+  color: #fff;
+  background: linear-gradient(145deg, #003060, #863171);
+}
+
+.test-link:hover {
+  background: linear-gradient(45deg, #1a5ea8, #004080);
+}
+
+.back-link:hover {
+  background: linear-gradient(45deg, #1a5ea8, #004080);
+}

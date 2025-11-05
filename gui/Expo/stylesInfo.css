@@ -1,0 +1,126 @@
+    /* general */
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+    /* FUENTES */
+    @font-face {
+    font-family: 'Now';
+    src: url('font/Now-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    }
+
+    @font-face {
+    font-family: 'Now';
+    src: url('font/Now-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    }
+
+    @font-face {
+    font-family: 'Now';
+    src: url('font/Now-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+    }
+    @font-face {
+    font-family: 'Now';
+    src: url('font/Now-Regular.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    }
+
+
+    body {
+    font-family: 'Now', sans-serif;
+    font-weight: 500; /* Medium por defecto */
+    background-color:#f0f0ff;
+    }
+
+    .topbar {
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-img {
+    height: 60px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+    transform: scale(1.05);
+    }
+
+    main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    }
+
+    .info-section {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 20px 40px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    }
+
+    .info-section:hover {
+    background: #f9f9ff;
+    }
+
+    .toggle-titulo {
+    font-size: 2rem;
+    color: #1A335E;
+    margin-bottom: 10px;
+    transition: all 0.4s ease;
+    }
+
+
+    .contenido {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: max-height 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .info-section.active .contenido {
+    max-height: 500px; /* suficiente para mostrar el contenido */
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .info-section.active .toggle-titulo {
+    background: linear-gradient(90deg, #CA4F64, #B2509D, #462C80, #1A335E);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent; 
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease infinite;
+    }
+
+    @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+    }
+
+
+
+    /* Animación al hacer scroll */
+    .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+    }

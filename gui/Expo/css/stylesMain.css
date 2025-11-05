@@ -1,301 +1,331 @@
-[data-spooky] { 
-  overflow: hidden;
-  --bg: #f0f0ff; 
-  --text: #121826; 
-  --muted: #5b6270; 
-  --white: #ffffff; 
-  --border: #e4e6ef; 
-  --brand-1: #004080;
-  --brand-2: #1a5ea8; 
-  --accent-1: #003060;
-  --accent-2: #863171; 
-  --deep: #002648; 
-  --shadow: 0 12px 30px rgba(18, 24, 38, 0.12); 
-  --radius: 16px; 
-  --radius-sm: 12px; 
-  --transition: 200ms cubic-bezier(.2,.6,.2,1); 
+* {
+  box-sizing: border-box;
 }
 
-[data-spooky] * { 
-  box-sizing: border-box; 
-} 
-
-@font-face {
-  font-family: 'League Spartan';
-  src: url('font/league-spartan.bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-[data-spooky] {
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
   font-family: 'League Spartan', sans-serif;
-}
-
-
-[data-spooky] 
-html { 
-  margin: 0; 
-} 
-
-[data-view] {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 300ms ease, transform 300ms ease;
-  position: relative;
-  width: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
-
-[data-view].active {
-  opacity: 1;
-  transform: translateY(0);
-  position: relative;
-  pointer-events: auto;
-}
-
-.spooky-item[aria-current="page"] .label {
-  color: #fff !important;
+  background: #f0f0ff;
+  color: #121826;
 }
 
 .logo-img {
   height: 60px;
+  display: block;
+  max-width: 100%;
 }
 
-.spooky-scope {
-  font-family: 'League Spartan', sans-serif;
-  color: var(--text);
-  background: var(--bg);
-}
-
-.spooky-scope a { 
-  color: inherit; 
-  text-decoration: none; 
-} 
-
-.spooky-scope img { 
-  max-width: 100%; 
-  display: block; 
-}
-
-.spooky-wrap {  
-  display: flex; 
+.spooky-wrap {
+  display: flex;
   flex-direction: column;
-  height: 100vh; 
+  height: 100vh;
 }
 
-.topbar { 
+.topbar {
+  position: relative;
+  z-index: 10;
   background-color: white;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  height: 64px; display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  position: sticky; top: 0; z-index: 20; 
-  flex-shrink: 0;
-} 
-  
-.spooky-brand { 
-  display: flex; 
+  padding: 0.4rem 2rem;
+  display: flex;
   align-items: center;
-  gap: 10px; 
-  font-weight: 700; 
-  letter-spacing: .2px; 
-} 
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
 
-.spooky-logo { 
-  width: 40px; 
-  height: 40px; 
-  border-radius: 10px; 
-  background: linear-gradient(45deg, var(--brand-1), var(--brand-2)); 
-  box-shadow: var(--shadow); 
-} 
-
-.spooky-toggle { 
-  appearance: none; 
-  border: none; 
-  background: transparent; 
-  cursor: pointer; 
-  padding: 8px; 
-  border-radius: 10px; 
-} 
-
-.spooky-toggle:focus-visible { 
-  outline: 2px solid var(--brand-2); 
-  outline-offset: 2px; 
+.spooky-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 1.5rem;
 }
 
 .spooky-main {
- flex: 1; 
- display: flex;
- min-height: 0; 
- overflow: hidden;
-} 
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
 
-.spooky-sidebar { 
-  width: 260px; 
-  height: 100%;
-  background: var(--white); 
-  border-right: 1px solid var(--border); 
-  transition: width var(--transition); 
-  overflow: hidden; 
-} 
+.spooky-sidebar {
+  width: 260px;
+  background: white;
+  border-right: 1px solid #e4e6ef;
+  transition: width 300ms ease;
+  overflow: hidden;
+  z-index: 1;
+}
 
-.spooky-sidebar.collapsed { 
-  width: 64px; 
-} 
-  
-.spooky-nav { 
-  padding: 12px; display: grid; 
-  gap: 6px; 
-} 
+.spooky-sidebar.collapsed {
+  width: 80px;
+}
 
-.spooky-group-label { 
-  font-size: 12px; 
-  color: var(--muted); 
-  text-transform: uppercase; 
-  padding: 8px 10px; 
-  letter-spacing: .06em; 
-} 
+.spooky-nav {
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
 
-.spooky-item { 
-  font-size: 15px;
-  display: flex; 
-  align-items: center; 
-  gap: 10px; width: 100%; 
-  padding: 10px 12px; 
-  border-radius: 10px; 
-  color: var(--text); 
-  background: transparent; 
-  border: 0; cursor: pointer; 
-  text-align: left; transition: background var(--transition), color var(--transition), transform var(--transition); 
-} 
+.spooky-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #121826;
+  position: relative;
+}
 
-.spooky-item:hover { 
-  background: #f4f6ff; 
-} 
+.spooky-item:hover {
+  background: #f4f6ff;
+}
 
-.spooky-item[aria-current="page"] { 
-  background: linear-gradient(145deg, #003060, #863171);  
-  color: #fff; 
-} 
-  
-.spooky-item .icon { 
-    width: 18px; height: 18px; flex: 0 0 18px; 
-} 
+.spooky-item[aria-current="page"] {
+  background: linear-gradient(145deg, #003060, #863171);
+  color: #fff;
+}
 
 .spooky-item[aria-current="page"] .icon {
   stroke: #fff !important;
 }
 
-  
-.spooky-item .label { 
-  white-space: nowrap;
-  overflow: hidden; 
-  text-overflow: ellipsis; } 
-
-.spooky-sidebar.collapsed .label { 
-  display: none; 
+.spooky-sidebar.collapsed .spooky-item {
+  justify-content: center;
 }
 
-.spooky-content { 
-  flex: 1; min-width: 0; 
-  padding: 24px; 
-  position: relative; 
+.spooky-sidebar.collapsed .spooky-item[aria-current="page"] {
+  background: none;
+  color: #fff;
 }
 
-/* ========== Hero / Card styles ========== */ 
-.spooky-hero { 
-  display: grid; 
-  gap: 24px; 
-  grid-template-columns: 1.1fr 0.9fr; 
-  align-items: center; 
-  padding: clamp(16px, 3vw, 24px); 
+.spooky-sidebar.collapsed .spooky-item[aria-current="page"] .icon-bg {
+  background: linear-gradient(145deg, #003060, #863171);
+  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spooky-sidebar.collapsed .label {
+  display: none;
+}
+
+.icon-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  flex-shrink: 0;
   position: relative;
-} 
-  
-.spooky-hero h1 { 
-  font-weight: 900; 
-  line-height: 1.15; 
-  font-size: 60px; 
-  margin: 0; } 
-
-.spooky-hero h2 { 
-  margin: 12px 0 0; 
-  color: var(--muted); 
-  font-size: 25px; 
+  z-index: 1;
 }
 
-.spooky-hero p { 
-  margin: 12px 0 0; 
-  color: var(--muted); 
-  font-size: 35px; 
-} 
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
- .text1{
+.spooky-content {
+  flex: 1;
+  padding: 24px;
+}
+
+[data-view] {
+  display: none;
+}
+
+[data-view].active {
+  display: block;
+}
+
+.spooky-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 8%;
+  background-color: #f0f0ff;
+  min-height: 80vh;
+}
+
+.spooky-hero h1 {
+  font-size: 3.5rem;
+  line-height: 1.2;
+}
+
+.spooky-hero h2 {
+  margin-bottom: 60px;
+  color: #5b6270;
+  font-size: 30px;
+}
+
+.spooky-hero p {
+  color: #5b6270;
+  font-size: 35px;
+}
+
+.text1 {
   max-width: 400px;
   margin-top: 75px;
   margin-left: 50px;
 }
 
-.box1 { 
-  background: white; 
-  border-radius: var(--radius); 
-  box-shadow: var(--shadow); 
-  padding-top: 90px;
-  padding-bottom: 40px;
-  padding-left: 100px;
-  padding-right: 100px;
-  text-align: center; 
-  position: relative;
-  top: 100px;
-  right: 100px;
-} 
+.box1.call-to-action {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-bottom: 100px;
+}
 
-.btn-hero { appearance: none; border: none; cursor: pointer; padding: 12px 20px; border-radius: 17px; font-weight: 800; color: #fff; font-size: 18px; background: linear-gradient(45deg, var(--brand-1), var(--brand-2)); box-shadow: 0 6px 18px rgba(0,0,0,.15); transition: transform 260ms ease, filter 260ms ease; } .btn-hero:hover { transform: scale(1.06); filter: brightness(1.05); } .btn-hero:focus-visible { outline: 3px solid #bcd3ff; outline-offset: 3px; }
+.btn-gradient {
+  background: linear-gradient(145deg, #003060, #863171);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
 
-.spooky-card { background: var(--white); border-radius: var(--radius-sm); padding: 16px 18px; box-shadow: var(--shadow); } .spooky-card + .spooky-card { margin-top: 14px; }
+[data-view="monitoring"] .btn-gradient {
+  margin-top: 2rem; 
+}
 
-/* FAQ style section (accent panel) */ .spooky-faq { background: var(--deep); color: #fff; border-radius: var(--radius); padding: 18px; } .spooky-faq .q { margin: 0; border-radius: 12px; padding: 12px 14px; font-weight: 700; cursor: pointer; border: 0; background: linear-gradient(145deg, var(--accent-1), var(--accent-2)); color: #fff; width: 100%; text-align: left; transition: transform var(--transition), filter var(--transition); } .spooky-faq .q:hover { transform: scale(1.02); filter: brightness(1.05); } .spooky-faq .a { margin: 0; max-height: 0; overflow: hidden; transition: max-height 300ms ease, opacity 300ms ease; opacity: 0; color: #e8e8ff; padding: 0 2px; } .spooky-faq .item.open .a { max-height: 220px; opacity: 1; margin-top: 8px; }
+.btn-gradient:hover {
+  transform: scale(1.08);
+  background: linear-gradient(45deg, #1a5ea8, #004080);
+}
 
-/* Decorative floating blob (signature moment) */ .spooky-blob { position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(120px 120px at 40% 40%, #ffffffa8 0%, #ffffff10 60%, transparent 70%), linear-gradient(45deg, var(--accent-1), var(--accent-2)); filter: blur(6px) saturate(1.1); opacity: .35; pointer-events: none; animation: floatY 5s ease-in-out infinite; } @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } } @media (prefers-reduced-motion: reduce) { .btn-hero, .spooky-faq .q, .spooky-blob { transition: none; animation: none; } }
+.spooky-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.12);
+  margin-top: 14px;
+}
 
-@media (max-width: 960px) { 
-  .spooky-hero { 
-    grid-template-columns: 1fr; 
-  } 
-} 
+.spooky-learn {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.12);
+  margin-top: 24px;
+}
 
-@media (max-width: 720px) { 
-  .spooky-sidebar { 
-    position: fixed; 
-    inset: 64px auto 0 0; 
-    height: calc(100dvh - 64px); 
-    z-index: 30; 
-    box-shadow: var(--shadow); 
-    translate: -100% 0; 
-    transition: translate var(--transition), width var(--transition); 
-    width: 260px; } 
-    
-  .spooky-sidebar.open { 
-    translate: 0 0; } 
-  
- .spooky-sidebar.collapsed { 
-  width: 260px; }  
-  
-  .spooky-backdrop { 
-    position: fixed; 
-    inset: 64px 0 0 0; 
-    background: rgba(0,0,0,.2); 
-    backdrop-filter: blur(1px); 
-    opacity: 0; pointer-events: none; 
-    transition: opacity var(--transition); 
-    z-index: 25; } 
-    
-  .spooky-backdrop.show { 
-    opacity: 1; 
-    pointer-events: auto; 
-  } 
+.spooky-learn h3 {
+  margin-top: 24px;
+  color: #863171;
+  font-size: 1.4rem;
+}
+
+.spooky-learn p {
+  font-size: 1.1rem;
+  color: #5b6270;
+  margin-bottom: 1rem;
+}
+
+.quiz-option {
+  display: block;
+  margin: 12px 0;
+  padding: 12px 18px;
+  background: linear-gradient(145deg, #004080, #1a5ea8);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+.quiz-option:hover {
+  transform: scale(1.05);
+}
+
+#quiz-feedback {
+  font-size: 1rem;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.spooky-learn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.spooky-learn-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spooky-learn-card h3 {
+  font-size: 1.3rem;
+  color: #003060;
+  margin-bottom: 0.5rem;
+}
+
+.spooky-learn-card p {
+  font-size: 1rem;
+  color: #5b6270;
+  margin-bottom: 1rem;
+}
+
+.learn-link {
+  font-weight: bold;
+  color: #863171;
+  text-decoration: none;
+  margin-top: auto;
+  transition: color 0.2s ease;
+}
+
+.learn-link:hover {
+  color: #003060;
+}
+
+.img-cards {
+  max-width: 90%;
+  margin: 0 auto 15px;
+  display: block;
+}
+
+.spooky-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.spooky-table th,
+.spooky-table td {
+  border: 1px solid #444;
+  padding: 8px;
+  text-align: left;
+}
+
+.spooky-table th {
+  background-color: #222;
+  color: #fff;
 }

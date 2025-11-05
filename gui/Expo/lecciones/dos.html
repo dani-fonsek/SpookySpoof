@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>DoS: Ataques de Denegación de Servicio Distribuida</title>
+  <link rel="stylesheet" href="../css/stylesMain.css">
+  <link rel="stylesheet" href="../css/dos.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../index.html">
+      <img src="../images/logo.png" alt="Logo Spooky Spoof" class="logo-img">
+    </a>
+    <button id="spookyCollapseBtn" class="spooky-toggle" aria-label="Colapsar sidebar">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <div class="lesson-tabs">
+    <h1>DoS: Ataques de Denegación de Servicio Distribuida</h1>
+
+    <div class="lesson-panel active">
+      <h3>¿Qué es un ataque DDoS?</h3>
+      <p>Es un tipo de ciberataque en el que un atacante satura un sistema, red o servicio online mediante una gran cantidad de tráfico malicioso o solicitudes falsas. El objetivo es interrumpir el funcionamiento normal, haciendo que el recurso deje de estar disponible para usuarios legítimos.</p>
+    </div>
+
+    <div class="lesson-panel">
+      <h3>¿Cómo funcionan?</h3>
+      <p>El atacante no utiliza una sola máquina, sino una botnet que es una red distribuida de dispositivos comprometidos (infectados con malware), que pueden ser: PCs, laptops, smartphones, dispositivos IoT (cámaras IP, smart TVs, termostatos, etc.) y enrutadores mal configurados o sin parches
+        Cada uno de estos dispositivos envía tráfico coordinado al objetivo, normalmente bajo el control de un servidor de comando y control (C2). Aunque cada dispositivo genera poco tráfico por sí solo, el volumen combinado puede alcanzar cientos de Gbps o más.
+        </p>
+    </div>
+
+    <div class="lesson-panel">
+      <h3>Algunos objetivos de ataques DDoS</h3>
+      <ul>
+        <li><strong>Hacktivismo:</strong> Ataques contra empresas o sitios web por desacuerdos ideológicos.</li>
+        <li><strong>Guerra cibernética:</strong> Gobiernos atacan infraestructuras críticas de estados enemigos.</li>
+        <li><strong>Extorsión:</strong> Amenazas DDoS para exigir dinero a empresas.</li>
+        <li><strong>Entretenimiento:</strong> Hackers que atacan por diversión o curiosidad.</li>
+        <li><strong>Competencia empresarial:</strong> Empresas que atacan a otras para obtener ventaja.</li>
+      </ul>
+    </div>
+
+    <div class="lesson-panel">
+      <h3>Tipos de ataques</h3>
+      <ul>
+        <li><strong>Ataques a la capa de aplicación</strong></li>
+        <li><strong>Ataques de protocolo</strong></li>
+        <li><strong>Ataques por amplificación/reflexión de DNS</strong></li>
+        <li><strong>Ataques volumétricos</strong></li>
+      </ul>
+     </div>
+
+    <div class="tab-indicators">
+      <span class="tab-dot active" data-tab="0"></span>
+      <span class="tab-dot" data-tab="1"></span>
+      <span class="tab-dot" data-tab="2"></span>
+      <span class="tab-dot" data-tab="3"></span>
+    </div>
+
+<div class="lesson-actions">
+  <a href="../main.html" class="back-link">← Volver al homepage</a>
+  <a href="ddos-test.html" class="test-link">Ir al test →</a>
+</div>
+  </div>
+
+  <script>
+    const dots = document.querySelectorAll('.tab-dot');
+    const panels = document.querySelectorAll('.lesson-panel');
+  
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = dot.getAttribute('data-tab');
+  
+        panels.forEach(p => p.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+  
+        panels[index].classList.add('active');
+        dot.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
